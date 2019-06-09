@@ -20,6 +20,7 @@ DisplayCreationStatus DisplayManager::create() {
     glfwMakeContextCurrent(window);
     glViewport(0, 0, WIN_WIDTH, WIN_HEIGHT);
 
+    glewExperimental = GL_TRUE;
     if (glewInit() != GLEW_OK) {
         std::cout << "Failed to initalize GLEW" << std::endl;
 
