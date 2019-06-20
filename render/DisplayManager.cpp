@@ -18,7 +18,10 @@ DisplayCreationStatus DisplayManager::create() {
         return INIT_ERROR;
     }
     glfwMakeContextCurrent(window);
-    glViewport(0, 0, WIN_WIDTH, WIN_HEIGHT);
+
+    int screenWidth, screenHeight;
+    glfwGetFramebufferSize( window, &screenWidth, &screenHeight );
+    glViewport(0, 0, screenWidth, screenHeight);
 
     glewExperimental = GL_TRUE;
     if (glewInit() != GLEW_OK) {

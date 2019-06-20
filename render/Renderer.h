@@ -1,9 +1,8 @@
 #ifndef ENGINE_RENDERER_H
 #define ENGINE_RENDERER_H
 
+#include "../includes.h"
 #include "RawModel.h"
-#include <GL/glew.h>
-#include <GLFW/glfw3.h>
 
 class Renderer {
 public:

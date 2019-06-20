@@ -1,8 +1,7 @@
 #ifndef ENGINE_DISPLAYMANAGER_H
 #define ENGINE_DISPLAYMANAGER_H
 
-#include <GL/glew.h>
-#include <GLFW/glfw3.h>
+#include "../includes.h"
 
 enum DisplayCreationStatus {
     INIT_ERROR = 0,
@@ -14,7 +13,7 @@ private:
     const static int WIN_WIDTH = 800;
     const static int WIN_HEIGHT = 600;
 
-    GLFWwindow* window;
+    GLFWwindow* window = nullptr;
 
 public:
     DisplayCreationStatus create();

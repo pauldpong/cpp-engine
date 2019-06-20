@@ -14,7 +14,7 @@ void Loader::storeDataToVao(int attributeIndex, const std::vector<float>& data) 
     GLuint vboId;
     glGenBuffers(1, &vboId);
     glBindBuffer(GL_ARRAY_BUFFER, vboId);
-    glBufferData(GL_ARRAY_BUFFER, data.size(), data.data(), GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, (data.size() * sizeof(float)), data.data(), GL_STATIC_DRAW);
 
     glVertexAttribPointer(attributeIndex, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
 

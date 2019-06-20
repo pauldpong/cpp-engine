@@ -1,10 +1,8 @@
 #ifndef ENGINE_LOADER_H
 #define ENGINE_LOADER_H
 
+#include "../includes.h"
 #include "RawModel.h"
-#include <GL/glew.h>
-#include <GLFW/glfw3.h>
-#include <vector>
 
 class Loader {
 private:
