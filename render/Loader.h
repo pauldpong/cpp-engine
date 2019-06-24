@@ -11,9 +11,11 @@ private:
 
     int createVao();
     void storeDataToVao(int attributeNumber, const std::vector<float>& data);
-    static void unbindVao();
+    void bindIndicesBuffer(const std::vector<int>& indices);
+    void unbindVao();
 public:
-    RawModel loadToVao(const std::vector<float>& positions);
+    RawModel loadToVao(const std::vector<float>& positions, const std::vector<int>& indices);
+    int loadTexture(std::string fileName);
     void clean();
 };
 

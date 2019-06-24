@@ -10,9 +10,12 @@ int main() {
             -0.5, 0.5, 0,
             -0.5, -0.5, 0,
             0.5, -0.5, 0,
-            0.5, -0.5, 0,
-            0.5, 0.5, 0,
-            -0.5, 0.5, 0
+            0.5, 0.5, 0
+    };
+
+    std::vector<int> indices = {
+            0, 1, 3,
+            3, 1, 2
     };
 
     DisplayManager display;
@@ -23,7 +26,7 @@ int main() {
     Loader loader;
     Renderer renderer;
     StaticShader shader;
-    RawModel model = loader.loadToVao(triangle);
+    RawModel model = loader.loadToVao(triangle, indices);
 
     while (!display.closeRequested()) {
         glfwPollEvents();
