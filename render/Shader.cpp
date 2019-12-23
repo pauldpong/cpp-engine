@@ -18,7 +18,6 @@ Shader::Shader(const std::string& vertexShaderFilePath, const std::string& fragm
     }
 
     glValidateProgram(programId);
-    //TODO: bindAttributes()
 }
 
 void Shader::start() {

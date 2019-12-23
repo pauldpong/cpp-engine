@@ -20,9 +20,6 @@ public:
     bool closeRequested();
     void refresh();
     void close();
-
-    int getWindowWidth();
-    int getWindowHeight();
 };
 
 

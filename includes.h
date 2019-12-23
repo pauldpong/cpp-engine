@@ -1,7 +1,7 @@
 #ifndef ENGINE_INCLUDES_H
 #define ENGINE_INCLUDES_H
 
-#include <string.h>
+#include <string>
 #include <iostream>
 #include <fstream>
 #include <sstream>

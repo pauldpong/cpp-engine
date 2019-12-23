@@ -1,5 +1,6 @@
 #include <iostream>
 #include "DisplayManager.h"
+#include "../tools/logger.h"
 
 DisplayCreationStatus DisplayManager::create() {
     glfwInit();
@@ -12,7 +13,7 @@ DisplayCreationStatus DisplayManager::create() {
 
     window = glfwCreateWindow(WIN_WIDTH, WIN_HEIGHT, "Engine", nullptr, nullptr);
     if (window == nullptr) {
-        std::cout << "Failed to create GLFW window" << std::endl;
+        log("Failed to create GLFW Window");
         glfwTerminate();
 
         return INIT_ERROR;
@@ -20,13 +21,12 @@ DisplayCreationStatus DisplayManager::create() {
     glfwMakeContextCurrent(window);
 
     int screenWidth, screenHeight;
-    glfwGetFramebufferSize( window, &screenWidth, &screenHeight );
+    glfwGetFramebufferSize(window, &screenWidth, &screenHeight);
     glViewport(0, 0, screenWidth, screenHeight);
 
     glewExperimental = GL_TRUE;
     if (glewInit() != GLEW_OK) {
-        std::cout << "Failed to initalize GLEW" << std::endl;
-
+        log("Failed to initialize GLEW");
         return INIT_ERROR;
     }
 
@@ -43,12 +43,4 @@ void DisplayManager::refresh() {
 
 void DisplayManager::close() {
     glfwTerminate();
-}
-
-int DisplayManager::getWindowWidth() {
-    return WIN_WIDTH;
-}
-
-int DisplayManager::getWindowHeight() {
-    return WIN_HEIGHT;
 }
