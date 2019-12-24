@@ -9,5 +9,6 @@
 
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
+#include "./includes/glm/glm.hpp"
 
 #endif //ENGINE_INCLUDES_H

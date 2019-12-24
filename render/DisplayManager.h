@@ -20,6 +20,10 @@ public:
     bool closeRequested();
     void refresh();
     void close();
+
+    static const int getWinWidth();
+
+    static const int getWinHeight();
 };
 
 

@@ -2,12 +2,12 @@
 // Created by Paul D'Pong on 2019-07-25.
 //
 
-#include "ModelTexture.h"
+#include "Texture.h"
 
-ModelTexture::ModelTexture(int id) {
+Texture::Texture(int id) {
     textureId = id;
 }
 
-int ModelTexture::getId() {
+int Texture::getId() {
     return textureId;
 }

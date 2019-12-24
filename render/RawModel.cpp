@@ -12,3 +12,5 @@ int RawModel::getVaoId() {
 int RawModel::getVertexCount() {
     return vertexCount;
 }
+
+

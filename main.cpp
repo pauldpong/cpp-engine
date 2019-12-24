@@ -5,7 +5,7 @@ using namespace std;
 #include "render/Loader.h"
 #include "render/Renderer.h"
 #include "render/StaticShader.h"
-#include "render/ModelTexture.h"
+#include "render/Texture.h"
 #include "render/TexturedModel.h"
 
 int main() {
@@ -34,20 +34,27 @@ int main() {
     if (displayCreationStatus == INIT_ERROR) { return -1; }
 
     Loader loader;
-    Renderer renderer;
+
     StaticShader shader;
+    shader.getUniformLocations();
     RawModel model = loader.loadToVao(triangle, textureCoords,indices);
-    ModelTexture texture = ModelTexture(loader.loadTexture("../assets/container.jpg"));
+    Texture texture = Texture(loader.loadTexture("../assets/container.jpg"));
     TexturedModel texturedModel = TexturedModel(model, texture);
 
+    Renderer renderer = Renderer(shader);
+
+    Entity entity = Entity(texturedModel, glm::vec3(0, 0, -1), 0, 0, 0, 1);
+
     while (!display.closeRequested()) {
-        glfwPollEvents();
+        entity.increasePosition(0, 0, -0.1f);
+
         renderer.prepare();
 
         shader.start();
-        renderer.render(texturedModel);
+        renderer.render(entity, shader);
         shader.stop();
 
+        glfwPollEvents();
         display.refresh();
     }
 

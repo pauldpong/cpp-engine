@@ -1,16 +1,14 @@
-//
-// Created by Paul D'Pong on 2019-07-25.
-//
-
 #include "TexturedModel.h"
 
-RawModel TexturedModel::getRawModel() {
+RawModel TexturedModel::getRawModel()
+{
     return rawModel;
 }
 
-ModelTexture TexturedModel::getModelTexture() {
-    return modelTexture;
+Texture TexturedModel::getModelTexture()
+{
+    return texture;
 }
 
-TexturedModel::TexturedModel(const RawModel &rawModel, const ModelTexture &modelTexture) : rawModel(rawModel),
-                                                                                           modelTexture(modelTexture) {}
+TexturedModel::TexturedModel(const RawModel &rawModel, const Texture &texture)
+    : rawModel(rawModel),texture(texture) {}

@@ -1,5 +1,6 @@
 #include <sstream>
 #include "Shader.h"
+#include "../includes/glm/gtc/type_ptr.hpp"
 
 Shader::Shader(const std::string& vertexShaderFilePath, const std::string& fragmentShaderFilePath) {
     vertexShaderId = loadShaderFile(vertexShaderFilePath, GL_VERTEX_SHADER);
@@ -26,6 +27,27 @@ void Shader::start() {
 
 void Shader::stop() {
     glUseProgram(0);
+}
+
+int Shader::getUniformLocation(std::string uniformName) {
+    return glGetUniformLocation(programId, uniformName.c_str());
+}
+
+void Shader::loadUniformFloat(int location, float value) {
+    glUniform1f(location, value);
+}
+
+void Shader::loadUniformVector4f(int location, float x, float y, float z, float w) {
+    glUniform4f(location, x, y, z, w);
+}
+
+void Shader::loadUniformBool(int location, bool value) {
+    int numericBoolValue = value ? 1 : 0;
+    glUniform1f(location, numericBoolValue);
+}
+
+void Shader::loadUniformMatrix(int location, glm::mat4 matrix) {
+    glUniformMatrix4fv(location, 1, false, glm::value_ptr(matrix));
 }
 
 void Shader::clean() {

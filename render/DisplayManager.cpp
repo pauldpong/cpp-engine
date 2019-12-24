@@ -44,3 +44,11 @@ void DisplayManager::refresh() {
 void DisplayManager::close() {
     glfwTerminate();
 }
+
+const int DisplayManager::getWinWidth() {
+    return WIN_WIDTH;
+}
+
+const int DisplayManager::getWinHeight() {
+    return WIN_HEIGHT;
+}

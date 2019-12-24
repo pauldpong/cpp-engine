@@ -6,18 +6,19 @@
 #define ENGINE_TEXTUREDMODEL_H
 
 #include "RawModel.h"
-#include "ModelTexture.h"
+#include "Texture.h"
 
-class TexturedModel {
+class TexturedModel
+{
 private:
     RawModel rawModel;
-    ModelTexture modelTexture;
+    Texture texture;
 
 public:
-    TexturedModel(const RawModel &rawModel, const ModelTexture &modelTexture);
+    TexturedModel(const RawModel &rawModel, const Texture &texture);
 
     RawModel getRawModel();
-    ModelTexture getModelTexture();
+    Texture getModelTexture();
 };
 
 
