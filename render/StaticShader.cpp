@@ -3,14 +3,10 @@
 StaticShader::StaticShader() : Shader("../shaders/vertexShader.txt", "../shaders/fragmentShader.txt") {}
 
 void StaticShader::getUniformLocations() {
-    uLTransformation = getUniformLocation("transformationMatrix");
-    uLProjection = getUniformLocation("projectionMatrix");
+    uLoc_MVP = getUniformLocation("MVP");
 }
 
-void StaticShader::loadTransformationMatrix(glm::mat4 matrix) {
-    loadUniformMatrix(uLTransformation, matrix);
+void StaticShader::loadMVP(glm::mat4 matrix) {
+    loadUniformMatrix(uLoc_MVP, matrix);
 }
 
-void StaticShader::loadProjectionMatrix(glm::mat4 matrix) {
-    loadUniformMatrix(uLProjection, matrix);
-}

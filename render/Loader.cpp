@@ -4,22 +4,31 @@
 #include "../stb_image.h"
 
 int Loader::createVao() {
+    // Creates VAO
     GLuint vaoId;
     glGenVertexArrays(1, &vaoId);
-    glBindVertexArray(vaoId);
-
     vaos.push_back(vaoId);
+
+    // Set as current VAO
+    glBindVertexArray(vaoId);
 
     return vaoId;
 }
 
-void Loader::storeDataToVao(int attributeIndex, int coordinateSize, const std::vector<float>& data) {
+void Loader::storeDataToVao(int attributeIndex, int size, const std::vector<float>& data) {
     GLuint vboId;
     glGenBuffers(1, &vboId);
     glBindBuffer(GL_ARRAY_BUFFER, vboId);
     glBufferData(GL_ARRAY_BUFFER, (data.size() * sizeof(float)), data.data(), GL_STATIC_DRAW);
 
-    glVertexAttribPointer(attributeIndex, coordinateSize, GL_FLOAT, GL_FALSE, 0, nullptr);
+    glVertexAttribPointer(
+            attributeIndex, // index - must match the layout in the shader
+            size, // size
+            GL_FLOAT, // type
+            GL_FALSE, // normalized?
+            0, // stride
+            nullptr // offset
+    );
 
     vbos.push_back(vboId);
 
@@ -69,7 +78,7 @@ RawModel Loader::loadToVao(const std::vector<float>& positions, const std::vecto
     bindIndicesBuffer(indices);
     unbindVao();
 
-    return { vaoId, (int) indices.size() } ;
+    return { vaoId, (int) indices.size() };
 }
 
 void Loader::clean() {

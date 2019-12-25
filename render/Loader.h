@@ -13,7 +13,8 @@ private:
     int createVao();
     void storeDataToVao(int attributeNumber, int coordinateSize, const std::vector<float>& data);
     void bindIndicesBuffer(const std::vector<int>& indices);
-    void unbindVao();
+
+    static void unbindVao();
 public:
     RawModel loadToVao(const std::vector<float>& positions, const std::vector<float>& texture, const std::vector<int>& indices);
     int loadTexture(const std::string& fileName);

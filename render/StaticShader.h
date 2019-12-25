@@ -6,12 +6,10 @@
 class StaticShader : public Shader {
 public:
     StaticShader();
-    void loadTransformationMatrix(glm::mat4 matrix);
-    void loadProjectionMatrix(glm::mat4 matrix);
+    void loadMVP(glm::mat4 matrix);
     void getUniformLocations() override;
 private:
-    int uLTransformation = 0;
-    int uLProjection = 0;
+    int uLoc_MVP = 0;
 };
 
 #endif //ENGINE_STATICSHADER_H

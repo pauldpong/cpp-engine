@@ -34,28 +34,24 @@ int main() {
     if (displayCreationStatus == INIT_ERROR) { return -1; }
 
     Loader loader;
-
+    Renderer renderer;
     StaticShader shader;
     shader.getUniformLocations();
     RawModel model = loader.loadToVao(triangle, textureCoords,indices);
     Texture texture = Texture(loader.loadTexture("../assets/container.jpg"));
     TexturedModel texturedModel = TexturedModel(model, texture);
 
-    Renderer renderer = Renderer(shader);
-
     Entity entity = Entity(texturedModel, glm::vec3(0, 0, -1), 0, 0, 0, 1);
 
     while (!display.closeRequested()) {
-        entity.increasePosition(0, 0, -0.1f);
-
-        renderer.prepare();
+        glClear(GL_COLOR_BUFFER_BIT);
 
         shader.start();
         renderer.render(entity, shader);
         shader.stop();
 
-        glfwPollEvents();
         display.refresh();
+        glfwPollEvents();
     }
 
     shader.clean();

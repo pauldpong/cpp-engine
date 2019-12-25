@@ -5,8 +5,7 @@
 #ifndef ENGINE_CAMERA_H
 #define ENGINE_CAMERA_H
 
-#include "../../includes/glm/glm.hpp"
-
+#include "../../includes.h"
 
 class Camera {
 private:

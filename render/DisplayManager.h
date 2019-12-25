@@ -4,14 +4,14 @@
 #include "../includes.h"
 
 enum DisplayCreationStatus {
-    INIT_ERROR = 0,
+    INIT_ERROR = -1,
     SUCCESS
 };
 
 class DisplayManager {
 private:
-    const static int WIN_WIDTH = 800;
-    const static int WIN_HEIGHT = 600;
+    const static int WIN_WIDTH = 1024;
+    const static int WIN_HEIGHT = 768;
 
     GLFWwindow* window = nullptr;
 
@@ -19,10 +19,9 @@ public:
     DisplayCreationStatus create();
     bool closeRequested();
     void refresh();
-    void close();
 
+    static void close();
     static const int getWinWidth();
-
     static const int getWinHeight();
 };
 

@@ -3,7 +3,10 @@
 #include "../tools/logger.h"
 
 DisplayCreationStatus DisplayManager::create() {
-    glfwInit();
+    if (!glfwInit()) {
+        log("Failed to initialized GLFW");
+        return INIT_ERROR;
+    }
 
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -18,23 +21,23 @@ DisplayCreationStatus DisplayManager::create() {
 
         return INIT_ERROR;
     }
+
+    // Initialize GLEW
     glfwMakeContextCurrent(window);
-
-    int screenWidth, screenHeight;
-    glfwGetFramebufferSize(window, &screenWidth, &screenHeight);
-    glViewport(0, 0, screenWidth, screenHeight);
-
     glewExperimental = GL_TRUE;
     if (glewInit() != GLEW_OK) {
         log("Failed to initialize GLEW");
         return INIT_ERROR;
     }
 
+    // Clear key only after we do glfwGetKey on it
+    glfwSetInputMode(window, GLFW_STICKY_KEYS, GLFW_TRUE);
+
     return SUCCESS;
 }
 
 bool DisplayManager::closeRequested() {
-    return glfwWindowShouldClose(window);
+    return glfwWindowShouldClose(window) || glfwGetKey(window, GLFW_KEY_ESCAPE);
 }
 
 void DisplayManager::refresh() {
