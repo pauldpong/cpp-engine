@@ -2,6 +2,8 @@
 #define ENGINE_DISPLAYMANAGER_H
 
 #include "../includes.h"
+#include "common/InputListener.h"
+
 
 enum DisplayCreationStatus {
     INIT_ERROR = -1,

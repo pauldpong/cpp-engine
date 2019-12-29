@@ -6,7 +6,7 @@
 #define ENGINE_ENTITY_H
 
 #include "../../includes.h"
-#include "../TexturedModel.h"
+#include "../base/TexturedModel.h"
 
 class Entity {
 private:

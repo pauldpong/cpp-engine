@@ -1,7 +1,7 @@
 #include "Renderer.h"
 #include "DisplayManager.h"
 
-void Renderer::render(Entity entity, StaticShader shader) {
+void Renderer::render(Entity entity, StaticShader shader, Camera camera) {
     TexturedModel model = entity.getModel();
 
     RawModel rawModel = model.getRawModel();
@@ -18,11 +18,7 @@ void Renderer::render(Entity entity, StaticShader shader) {
             entity.getScale()
     );
 
-    mat4 viewMatrix = lookAt(
-            vec3(4,3,3), // Camera is at (4,3,3), in World Space
-            vec3(0,0,0), // and looks at the origin
-            vec3(0,1,0)  // Head is up (set to 0,-1,0 to look upside-down)
-    );
+    mat4 viewMatrix = camera.getViewMatrix();
 
     mat4 projectionMatrix = perspective(
             Maths::toRadian(FOV),

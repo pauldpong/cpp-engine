@@ -1,7 +1,3 @@
-//
-// Created by Paul D'Pong on 2019-07-25.
-//
-
 #ifndef ENGINE_TEXTUREDMODEL_H
 #define ENGINE_TEXTUREDMODEL_H
 

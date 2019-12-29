@@ -2,14 +2,15 @@
 #define ENGINE_RENDERER_H
 
 #include "../includes.h"
-#include "TexturedModel.h"
+#include "base/TexturedModel.h"
 #include "entities/Entity.h"
-#include "StaticShader.h"
+#include "base/StaticShader.h"
 #include "Maths.h"
+#include "entities/Camera.h"
 
 class Renderer {
 public:
-    void render(Entity entity, StaticShader shader);
+    void render(Entity entity, StaticShader shader, Camera camera);
 private:
     static constexpr float FOV = 70;
     static constexpr float NEAR_PLANE = 0.1f;

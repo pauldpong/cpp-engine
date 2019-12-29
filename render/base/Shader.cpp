@@ -1,6 +1,6 @@
 #include <sstream>
 #include "Shader.h"
-#include "../includes/glm/gtc/type_ptr.hpp"
+#include "../../includes/glm/gtc/type_ptr.hpp"
 
 Shader::Shader(const std::string& vertexShaderFilePath, const std::string& fragmentShaderFilePath) {
     vertexShaderId = loadShaderFile(vertexShaderFilePath, GL_VERTEX_SHADER);

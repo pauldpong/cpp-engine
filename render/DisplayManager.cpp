@@ -1,6 +1,10 @@
 #include <iostream>
 #include "DisplayManager.h"
 #include "../tools/logger.h"
+#include "common/InputManager.h"
+
+void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
+void mouseCallback(GLFWwindow* window, double xpos, double ypos);
 
 DisplayCreationStatus DisplayManager::create() {
     if (!glfwInit()) {
@@ -30,8 +34,12 @@ DisplayCreationStatus DisplayManager::create() {
         return INIT_ERROR;
     }
 
-    // Clear key only after we do glfwGetKey on it
-    glfwSetInputMode(window, GLFW_STICKY_KEYS, GLFW_TRUE);
+    // Disables cursor
+    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+
+    // Set I/O callbacks
+    glfwSetKeyCallback(window, keyCallback);
+    glfwSetCursorPosCallback(window, mouseCallback);
 
     return SUCCESS;
 }
@@ -54,4 +62,14 @@ const int DisplayManager::getWinWidth() {
 
 const int DisplayManager::getWinHeight() {
     return WIN_HEIGHT;
+}
+
+void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods) {
+    InputManager* inputManager = InputManager::instance();
+    inputManager->handleKeyPress(key, action);
+}
+
+void mouseCallback(GLFWwindow* window, double xpos, double ypos) {
+    InputManager* inputManager = InputManager::instance();
+    inputManager->handleMouse(xpos, ypos);
 }
