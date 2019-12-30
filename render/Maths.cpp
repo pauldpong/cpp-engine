@@ -1,7 +1,5 @@
 #include "Maths.h"
 
-float toRadian(float degrees);
-
 glm::mat4 Maths::createTransformationMatrix(glm::vec3 translation, float rx, float ry, float rz, float scale) {
     glm::mat4 transformationMat = glm::mat4(1.0f);
     transformationMat = glm::translate(transformationMat, translation);

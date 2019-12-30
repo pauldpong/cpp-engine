@@ -1,8 +1,6 @@
 #ifndef ENGINE_INPUTLISTENER_H
 #define ENGINE_INPUTLISTENER_H
 
-#include <unordered_set>
-
 class InputListener {
 public:
     InputListener() = default;
