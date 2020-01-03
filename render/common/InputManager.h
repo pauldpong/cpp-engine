@@ -1,6 +1,7 @@
 #ifndef ENGINE_INPUTMANAGER_H
 #define ENGINE_INPUTMANAGER_H
 
+#include <unordered_set>
 #include "../../tools/logger.h"
 #include "InputListener.h"
 #include "../DisplayManager.h"
