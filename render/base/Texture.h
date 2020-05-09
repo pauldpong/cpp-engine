@@ -5,14 +5,18 @@
 #ifndef ENGINE_TEXTURE_H
 #define ENGINE_TEXTURE_H
 
+#include "Material.h"
 
 class Texture {
 private:
     int textureId;
+    Material material;
 
 public:
-    Texture(int id);
-    int getId();
+    Texture(int id, Material material);
+    const int& getId() const;
+
+    const Material &getMaterial() const;
 };
 
 

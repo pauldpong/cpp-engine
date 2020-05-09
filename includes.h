@@ -14,6 +14,7 @@
 #include <GLFW/glfw3.h>
 
 #include "./includes/glm/gtc/matrix_transform.hpp"
+#include "./includes/glm/gtx/string_cast.hpp"
 
 #include "./includes/glm/glm.hpp"
 using namespace glm;

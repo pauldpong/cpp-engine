@@ -4,13 +4,9 @@
 #include "../stb_image.h"
 
 int Loader::createVao() {
-    // Creates VAO
     GLuint vaoId;
     glGenVertexArrays(1, &vaoId);
-    vaos.push_back(vaoId);
-
-    // Set as current VAO
-    glBindVertexArray(vaoId);
+    vaoIds.push_back(vaoId);
 
     return vaoId;
 }
@@ -30,7 +26,7 @@ void Loader::storeDataToVao(int attributeIndex, int size, const std::vector<floa
             nullptr // offset
     );
 
-    vbos.push_back(vboId);
+    vboIds.push_back(vboId);
 
     glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
@@ -64,17 +60,24 @@ void Loader::bindIndicesBuffer(const std::vector<int> &indices) {
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vboId);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(int) ,indices.data(), GL_STATIC_DRAW);
 
-    vbos.push_back(vboId);
+    vboIds.push_back(vboId);
+}
+
+void Loader::bindVao(const int vaoId) {
+    glBindVertexArray(vaoId);
 }
 
 void Loader::unbindVao() {
     glBindVertexArray(0);
 }
 
-RawModel Loader::loadToVao(const std::vector<float>& positions, const std::vector<float>& texture, const std::vector<int>& indices) {
+RawModel Loader::loadToVao(const std::vector<float>& positions, const std::vector<float>& texture, const std::vector<float>& normals, const std::vector<int>& indices) {
     int vaoId = createVao();
+    bindVao(vaoId);
+
     storeDataToVao(0, 3, positions);
     storeDataToVao(1, 2, texture);
+    storeDataToVao(2, 3, normals);
     bindIndicesBuffer(indices);
     unbindVao();
 
@@ -82,7 +85,7 @@ RawModel Loader::loadToVao(const std::vector<float>& positions, const std::vecto
 }
 
 void Loader::clean() {
-    glDeleteVertexArrays(vaos.size(), vaos.data());
-    glDeleteBuffers(vbos.size(), vbos.data());
+    glDeleteVertexArrays(vaoIds.size(), vaoIds.data());
+    glDeleteBuffers(vboIds.size(), vboIds.data());
     glDeleteTextures(textureIds.size(), textureIds.data());
 }

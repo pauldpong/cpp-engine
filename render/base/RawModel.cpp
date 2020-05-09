@@ -5,12 +5,12 @@ RawModel::RawModel(int vaoID, int vertexCount) {
     this->vertexCount = vertexCount;
 }
 
-int RawModel::getVaoId() {
-    return vaoID;
+int RawModel::getVertexCount() const {
+    return vertexCount;
 }
 
-int RawModel::getVertexCount() {
-    return vertexCount;
+int RawModel::getVaoId() const {
+    return vaoID;
 }
 
 

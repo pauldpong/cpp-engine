@@ -19,7 +19,7 @@ private:
     float lastX = DisplayManager::getWinWidth() / 2.0f;
     float lastY = DisplayManager::getWinHeight() / 2.0f;
 
-    float speed = 3.0f; //Camera movement speed
+    float speed = 5.0f; //Camera movement speed
     float mouseSensitivity = 0.1f;
 
     void updateCameraVectors();

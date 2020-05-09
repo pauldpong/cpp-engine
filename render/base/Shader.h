@@ -11,7 +11,7 @@ private:
 protected:
     int getUniformLocation(std::string uniformName);
     void loadUniformFloat(int location, float value);
-    void loadUniformVector4f(int location, float x, float y, float z, float w);
+    void loadUniformVector(int location, vec3 vector);
     void loadUniformBool(int location, bool value);
     void loadUniformMatrix(int location, glm::mat4 matrix);
 

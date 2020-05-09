@@ -13,8 +13,9 @@ private:
 public:
     TexturedModel(const RawModel &rawModel, const Texture &texture);
 
-    RawModel getRawModel();
-    Texture getModelTexture();
+    const RawModel &getRawModel() const;
+
+    const Texture& getModelTexture() const;
 };
 
 

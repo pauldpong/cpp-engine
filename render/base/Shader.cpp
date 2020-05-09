@@ -37,8 +37,8 @@ void Shader::loadUniformFloat(int location, float value) {
     glUniform1f(location, value);
 }
 
-void Shader::loadUniformVector4f(int location, float x, float y, float z, float w) {
-    glUniform4f(location, x, y, z, w);
+void Shader::loadUniformVector(int location, vec3 vector) {
+    glUniform3f(location, vector.x, vector.y, vector.z);
 }
 
 void Shader::loadUniformBool(int location, bool value) {

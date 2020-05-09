@@ -10,8 +10,10 @@ private:
 
 public:
     RawModel(int vaoID, int vertexCount);
-    int getVaoId();
-    int getVertexCount();
+
+    int getVaoId() const;
+
+    int getVertexCount() const;
 };
 
 #endif //ENGINE_RAWMODEL_H

@@ -4,10 +4,12 @@
 
 #include "Texture.h"
 
-Texture::Texture(int id) {
-    textureId = id;
+Texture::Texture(int id, Material material) : textureId(id), material(material) {}
+
+const int& Texture::getId() const {
+    return textureId;
 }
 
-int Texture::getId() {
-    return textureId;
+const Material &Texture::getMaterial() const {
+    return material;
 }
