@@ -1,4 +1,5 @@
 #include <iostream>
+#include <random>
 using namespace std;
 
 #include "render/DisplayManager.h"
@@ -24,14 +25,12 @@ int main() {
 
     MasterRenderer renderer;
 
-    RawModel model = ObjLoader::loadObjModel("../assets/dragon.obj", loader);
+    RawModel model = ObjLoader::loadObjModel("../assets/fern.obj", loader);
     Material material = Material(1, 10);
     Material terrainMat = Material();
-    Texture texture = Texture(loader.loadTexture("../assets/wood.jpg"), material);
+    Texture texture = Texture(loader.loadTexture("../assets/fern.png"), material);
     Texture grass = Texture(loader.loadTexture("../assets/grass.jpg"), terrainMat);
     TexturedModel texturedModel = TexturedModel(model, texture);
-
-    Entity entity = Entity(texturedModel, glm::vec3(0, 0, 0), 0, 0, 0, 1);
 
     TerrainGrid grid0 = TerrainGrid(0, 0, loader, grass);
     TerrainGrid grid1 = TerrainGrid(-1, -1, loader, grass);
@@ -41,12 +40,26 @@ int main() {
     Camera camera;
     Light light(vec3(0, 0, -20), vec3(1, 1, 1));
 
+    std::vector<Entity> entities;
+
+    std::default_random_engine generator;
+    std::uniform_real_distribution<float> distribution(0, 1);
+
+
+    for (int i = 0; i < 500; i++) {
+        Entity newEntity = Entity(texturedModel, vec3(distribution(generator) * 800, 0, distribution(generator) * 600), 0, 0, 0, 0.5);
+
+        entities.push_back(newEntity);
+    }
+
     while (!display.closeRequested()) {
         float currentFrame = glfwGetTime();
         deltaTime = currentFrame - lastFrame;
         lastFrame = currentFrame;
 
-        renderer.processEntity(entity);
+        for (auto entity : entities) {
+            renderer.processEntity(entity);
+        }
         renderer.processTerrainGrid(grid0);
         renderer.processTerrainGrid(grid1);
         renderer.processTerrainGrid(grid2);

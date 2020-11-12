@@ -23,5 +23,11 @@ void main() {
     vec3 specular = max(pow(dot(halfVector, unitNormal), shine), 0.0) * reflectivity * lightColor;
     vec3 diffuse = max(dot(unitNormal, unitLightVector), 0.2) * lightColor;
 
+    vec4 textureColor = texture(textureSampler, textureCoords);
+
+    if (textureColor.a < 0.1) {
+        discard;
+    }
+
     outColor = vec4(specular, 1.0) + vec4(diffuse, 1.0) * texture(textureSampler, textureCoords);
 }
