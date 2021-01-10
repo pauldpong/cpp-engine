@@ -2,9 +2,7 @@
 #define ENGINE_INPUTMANAGER_H
 
 #include <unordered_set>
-#include "../../tools/logger.h"
 #include "InputListener.h"
-#include "../DisplayManager.h"
 
 class InputManager {
     static InputManager* sInstance;
@@ -22,6 +20,5 @@ public:
 private:
     std::unordered_set<InputListener*> mListeners;
 };
-
 
 #endif //ENGINE_INPUTMANAGER_H

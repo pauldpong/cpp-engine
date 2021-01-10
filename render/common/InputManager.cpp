@@ -1,3 +1,4 @@
+#include <GLFW/glfw3.h>
 #include "InputManager.h"
 
 InputManager* InputManager::sInstance = nullptr;

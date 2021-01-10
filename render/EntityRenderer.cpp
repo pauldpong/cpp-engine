@@ -1,4 +1,5 @@
 #include "EntityRenderer.h"
+#include "MasterRenderer.h"
 #include "DisplayManager.h"
 
 void EntityRenderer::prepareTexturedModel(TexturedModel model) {
@@ -7,10 +8,16 @@ void EntityRenderer::prepareTexturedModel(TexturedModel model) {
     glEnableVertexAttribArray(1);
     glEnableVertexAttribArray(2);
 
-    shader.loadMaterial(model.getModelTexture().getMaterial());
+    Texture texture = model.getModelTexture();
+
+    if (texture.getMaterial().isTransparent()) {
+        MasterRenderer::setCulling(false);
+    }
+    shader.loadFakeLighting(texture.getMaterial().useFakeLighting());
+    shader.loadMaterial(texture.getMaterial());
 
     glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE_2D, model.getModelTexture().getId());
+    glBindTexture(GL_TEXTURE_2D, texture.getId());
 }
 
 void EntityRenderer::prepareInstance(Entity entity) {
@@ -26,6 +33,7 @@ void EntityRenderer::prepareInstance(Entity entity) {
 }
 
 void EntityRenderer::unbindTexturedModel() {
+    MasterRenderer::setCulling(true);
     glDisableVertexAttribArray(0);
     glDisableVertexAttribArray(1);
     glDisableVertexAttribArray(2);

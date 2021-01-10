@@ -12,7 +12,6 @@ public:
     RawModel(int vaoID, int vertexCount);
 
     int getVaoId() const;
-
     int getVertexCount() const;
 };
 

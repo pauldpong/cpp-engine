@@ -16,8 +16,7 @@ float deltaTime = 0.0f;	// Time between current frame and last frame
 float lastFrame = 0.0f; // Time of last frame
 
 int main() {
-    DisplayManager display;
-
+    DisplayManager display("Engine");
     DisplayCreationStatus displayCreationStatus = display.create();
     if (displayCreationStatus == INIT_ERROR) { return -1; }
 
@@ -26,11 +25,18 @@ int main() {
     MasterRenderer renderer;
 
     RawModel model = ObjLoader::loadObjModel("../assets/fern.obj", loader);
-    Material material = Material(1, 10);
+    Material material = Material(0.1, 10);
+    material.setTransparent(true);
+    material.setFakeLighting(true);
     Material terrainMat = Material();
     Texture texture = Texture(loader.loadTexture("../assets/fern.png"), material);
     Texture grass = Texture(loader.loadTexture("../assets/grass.jpg"), terrainMat);
+
+    RawModel model2 = ObjLoader::loadObjModel("../assets/grassModel.obj", loader);
+    Texture grassTexture = Texture(loader.loadTexture("../assets/grassTexture.png"), material);
+
     TexturedModel texturedModel = TexturedModel(model, texture);
+    TexturedModel grassModel = TexturedModel(model2, grassTexture);
 
     TerrainGrid grid0 = TerrainGrid(0, 0, loader, grass);
     TerrainGrid grid1 = TerrainGrid(-1, -1, loader, grass);
@@ -38,7 +44,7 @@ int main() {
     TerrainGrid grid3 = TerrainGrid(0, -1, loader, grass);
 
     Camera camera;
-    Light light(vec3(0, 0, -20), vec3(1, 1, 1));
+    Light light(vec3(20000, 20000, 20000), vec3(1, 1, 1));
 
     std::vector<Entity> entities;
 
@@ -47,8 +53,13 @@ int main() {
 
 
     for (int i = 0; i < 500; i++) {
-        Entity newEntity = Entity(texturedModel, vec3(distribution(generator) * 800, 0, distribution(generator) * 600), 0, 0, 0, 0.5);
+        Entity newEntity = Entity(texturedModel, vec3(distribution(generator) * 800 - 400, 0, distribution(generator) * -600), 0, 0, 0, 1);
 
+        entities.push_back(newEntity);
+    }
+
+    for (int i = 0; i < 200; i++) {
+        Entity newEntity = Entity(grassModel, vec3(distribution(generator) * 800 - 400, 0, distribution(generator) * -600), 0, 0, 0, 2);
         entities.push_back(newEntity);
     }
 

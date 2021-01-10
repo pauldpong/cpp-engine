@@ -13,6 +13,10 @@ private:
     static constexpr float NEAR_PLANE = 0.1f;
     static constexpr float FAR_PLANE = 1000;
 
+    static constexpr float RED = 0.5f;
+    static constexpr float GREEN = 0.5f;
+    static constexpr float BLUE = 0.5f;
+
     StaticShader shader;
     TerrainShader terrainShader;
 
@@ -30,6 +34,8 @@ public:
     void processEntity(Entity entity);
     void processTerrainGrid(TerrainGrid terrainGrid);
     void clean();
+
+    static void setCulling(bool enableCulling);
 };
 
 

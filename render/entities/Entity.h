@@ -1,7 +1,3 @@
-//
-// Created by Paul D'Pong on 2019-12-23.
-//
-
 #ifndef ENGINE_ENTITY_H
 #define ENGINE_ENTITY_H
 

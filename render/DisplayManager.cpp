@@ -1,10 +1,12 @@
-#include <iostream>
-#include "DisplayManager.h"
 #include "../tools/logger.h"
 #include "common/InputManager.h"
 
+#include "DisplayManager.h"
+
 void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
 void mouseCallback(GLFWwindow* window, double xpos, double ypos);
+
+DisplayManager::DisplayManager(std::string title) : title(std::move(title)) {}
 
 DisplayCreationStatus DisplayManager::create() {
     if (!glfwInit()) {
@@ -18,7 +20,7 @@ DisplayCreationStatus DisplayManager::create() {
     glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 
-    window = glfwCreateWindow(WIN_WIDTH, WIN_HEIGHT, "Engine", nullptr, nullptr);
+    window = glfwCreateWindow(WIN_WIDTH, WIN_HEIGHT, title.data(), nullptr, nullptr);
     if (window == nullptr) {
         log("Failed to create GLFW Window");
         glfwTerminate();
@@ -44,6 +46,16 @@ DisplayCreationStatus DisplayManager::create() {
     return SUCCESS;
 }
 
+void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods) {
+    InputManager* inputManager = InputManager::instance();
+    inputManager->handleKeyPress(key, action);
+}
+
+void mouseCallback(GLFWwindow* window, double xpos, double ypos) {
+    InputManager* inputManager = InputManager::instance();
+    inputManager->handleMouse(xpos, ypos);
+}
+
 bool DisplayManager::closeRequested() {
     return glfwWindowShouldClose(window) || glfwGetKey(window, GLFW_KEY_ESCAPE);
 }
@@ -62,14 +74,4 @@ const int DisplayManager::getWinWidth() {
 
 const int DisplayManager::getWinHeight() {
     return WIN_HEIGHT;
-}
-
-void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods) {
-    InputManager* inputManager = InputManager::instance();
-    inputManager->handleKeyPress(key, action);
-}
-
-void mouseCallback(GLFWwindow* window, double xpos, double ypos) {
-    InputManager* inputManager = InputManager::instance();
-    inputManager->handleMouse(xpos, ypos);
 }

@@ -17,6 +17,7 @@ public:
     void loadViewMatrix(mat4 matrix);
     void loadProjectionMatrix(mat4 matrix);
     void loadLight(Light light);
+    void loadSkyColor(float r, float g, float b);
     void loadMaterial(Material material);
     void getUniformLocations() override;
 private:
@@ -27,6 +28,7 @@ private:
     int uLoc_lightColor = 0;
     int uLoc_materialReflectivity = 0;
     int uLoc_materialShine = 0;
+    int uLoc_skyColor = 0;
 };
 
 

@@ -4,12 +4,14 @@ void MasterRenderer::render(Light light, Camera camera) {
     prepare();
     shader.start();
 
+    shader.loadSkyColor(RED, GREEN, BLUE);
     shader.loadLight(light);
     shader.loadViewMatrix(camera.getViewMatrix());
     renderer.render(entities);
     shader.stop();
 
     terrainShader.start();
+    terrainShader.loadSkyColor(RED, GREEN, BLUE);
     terrainShader.loadLight(light);
     terrainShader.loadViewMatrix(camera.getViewMatrix());
     terrainRenderer.render(terrainGrids);
@@ -46,11 +48,20 @@ MasterRenderer::MasterRenderer() :
     renderer(shader, perspective(Maths::toRadian(FOV), (float) DisplayManager::getWinWidth() / (float) DisplayManager::getWinHeight(),NEAR_PLANE,FAR_PLANE)),
     terrainRenderer(terrainShader, perspective(Maths::toRadian(FOV), (float) DisplayManager::getWinWidth() / (float) DisplayManager::getWinHeight(),NEAR_PLANE,FAR_PLANE))
 {
-    glEnable(GL_CULL_FACE);
-    glCullFace(GL_BACK);
+    setCulling(true);
+}
+
+void MasterRenderer::setCulling(bool enableCulling) {
+    if (enableCulling) {
+        glEnable(GL_CULL_FACE);
+        glCullFace(GL_BACK);
+    } else {
+        glDisable(GL_CULL_FACE);
+    }
 }
 
 void MasterRenderer::prepare() {
     glEnable(GL_DEPTH_TEST);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glClearColor(RED, GREEN, BLUE, 1);
 }

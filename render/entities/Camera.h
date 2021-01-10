@@ -7,7 +7,7 @@
 
 class Camera : private InputListener {
 private:
-    vec3 position = vec3(0, 0, 4);
+    vec3 position = vec3(0, 10, 0);
     vec3 front = vec3(0, 0, -1.0f);
     vec3 up = vec3(0, 1.0f, 0);
     vec3 right = glm::cross(front, up);

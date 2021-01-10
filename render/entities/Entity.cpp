@@ -1,7 +1,3 @@
-//
-// Created by Paul D'Pong on 2019-12-23.
-//
-
 #include "Entity.h"
 
 Entity::Entity(const TexturedModel &model, const glm::vec3 &position, float rx, float ry, float rz, float scale)

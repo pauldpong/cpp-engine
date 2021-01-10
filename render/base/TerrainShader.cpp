@@ -12,6 +12,11 @@ void TerrainShader::getUniformLocations() {
     uLoc_lightColor = getUniformLocation("lightColor");
     uLoc_materialReflectivity = getUniformLocation("reflectivity");
     uLoc_materialShine = getUniformLocation("shine");
+    uLoc_skyColor = getUniformLocation("skyColor");
+}
+
+void TerrainShader::loadSkyColor(float r, float g, float b) {
+    loadUniformVector(uLoc_skyColor, vec3(r, g, b));
 }
 
 void TerrainShader::loadLight(Light light) {

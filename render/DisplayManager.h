@@ -1,8 +1,8 @@
 #ifndef ENGINE_DISPLAYMANAGER_H
 #define ENGINE_DISPLAYMANAGER_H
 
-#include "../includes.h"
-#include "common/InputListener.h"
+#include <GL/glew.h>
+#include <GLFW/glfw3.h>
 
 enum DisplayCreationStatus {
     INIT_ERROR = -1,
@@ -11,12 +11,16 @@ enum DisplayCreationStatus {
 
 class DisplayManager {
 private:
-    const static int WIN_WIDTH = 1024;
-    const static int WIN_HEIGHT = 768;
-
     GLFWwindow* window = nullptr;
 
+    const static int WIN_WIDTH = 1024;
+    const static int WIN_HEIGHT = 768;
+    std::string title = "Untitled";
+
 public:
+    DisplayManager() = default;
+    explicit DisplayManager(std::string title);
+
     DisplayCreationStatus create();
     bool closeRequested();
     void refresh();
@@ -25,6 +29,5 @@ public:
     static const int getWinWidth();
     static const int getWinHeight();
 };
-
 
 #endif //ENGINE_DISPLAYMANAGER_H

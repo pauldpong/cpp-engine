@@ -12,6 +12,16 @@ void StaticShader::getUniformLocations() {
     uLoc_lightColor = getUniformLocation("lightColor");
     uLoc_materialReflectivity = getUniformLocation("reflectivity");
     uLoc_materialShine = getUniformLocation("shine");
+    uLoc_useFakeLighting = getUniformLocation("useFakeLighting");
+    uLoc_skyColor = getUniformLocation("skyColor");
+}
+
+void StaticShader::loadSkyColor(float r, float g, float b) {
+    loadUniformVector(uLoc_skyColor, vec3(r, g, b));
+}
+
+void StaticShader::loadFakeLighting(bool useFake) {
+    loadUniformBool(uLoc_useFakeLighting, useFake);
 }
 
 void StaticShader::loadLight(Light light) {
