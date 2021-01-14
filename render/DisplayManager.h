@@ -17,6 +17,9 @@ private:
     const static int WIN_HEIGHT = 768;
     std::string title = "Untitled";
 
+    static double lastFrameTime;
+    static double delta;
+
 public:
     DisplayManager() = default;
     explicit DisplayManager(std::string title);
@@ -28,6 +31,10 @@ public:
     static void close();
     static const int getWinWidth();
     static const int getWinHeight();
+
+    static double getFrameTime();
+private:
+    static double getCurrentTime();
 };
 
 #endif //ENGINE_DISPLAYMANAGER_H

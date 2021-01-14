@@ -3,6 +3,9 @@
 
 #include "DisplayManager.h"
 
+double DisplayManager::lastFrameTime = 0;
+double DisplayManager::delta = 0;
+
 void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
 void mouseCallback(GLFWwindow* window, double xpos, double ypos);
 
@@ -43,6 +46,8 @@ DisplayCreationStatus DisplayManager::create() {
     glfwSetKeyCallback(window, keyCallback);
     glfwSetCursorPosCallback(window, mouseCallback);
 
+    lastFrameTime = getCurrentTime();
+
     return SUCCESS;
 }
 
@@ -62,6 +67,10 @@ bool DisplayManager::closeRequested() {
 
 void DisplayManager::refresh() {
     glfwSwapBuffers(window);
+
+    double currentFrameTime = getCurrentTime();
+    DisplayManager::delta = currentFrameTime - lastFrameTime;
+    lastFrameTime = currentFrameTime;
 }
 
 void DisplayManager::close() {
@@ -74,4 +83,12 @@ const int DisplayManager::getWinWidth() {
 
 const int DisplayManager::getWinHeight() {
     return WIN_HEIGHT;
+}
+
+double DisplayManager::getCurrentTime() {
+    return glfwGetTime();
+}
+
+double DisplayManager::getFrameTime() {
+    return delta;
 }

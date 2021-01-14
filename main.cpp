@@ -11,9 +11,7 @@ using namespace std;
 #include "render/entities/Camera.h"
 
 #include "render/base/ObjLoader.h"
-
-float deltaTime = 0.0f;	// Time between current frame and last frame
-float lastFrame = 0.0f; // Time of last frame
+#include "render/entities/Player.h"
 
 int main() {
     DisplayManager display("Engine");
@@ -63,10 +61,11 @@ int main() {
         entities.push_back(newEntity);
     }
 
+    Player player = Player(texturedModel, vec3(0, 0, 0), 0, 0, 0, 1);
+    entities.push_back(player);
+
     while (!display.closeRequested()) {
-        float currentFrame = glfwGetTime();
-        deltaTime = currentFrame - lastFrame;
-        lastFrame = currentFrame;
+//        player.move();
 
         for (auto entity : entities) {
             renderer.processEntity(entity);

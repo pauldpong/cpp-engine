@@ -29,21 +29,21 @@ mat4 Camera::getViewMatrix() {
 }
 
 void Camera::onKeyDown(int key) {
-    if (key == GLFW_KEY_W) {
-        position += front * deltaTime * speed;
-    }
-
-    if (key == GLFW_KEY_A) {
-        position -= right * deltaTime * speed;
-    }
-
-    if (key == GLFW_KEY_S) {
-        position -= front * deltaTime * speed;
-    }
-
-    if (key == GLFW_KEY_D) {
-        position += right * deltaTime * speed;
-    }
+//    if (key == GLFW_KEY_W) {
+//        position += front * deltaTime * speed;
+//    }
+//
+//    if (key == GLFW_KEY_A) {
+//        position -= right * deltaTime * speed;
+//    }
+//
+//    if (key == GLFW_KEY_S) {
+//        position -= front * deltaTime * speed;
+//    }
+//
+//    if (key == GLFW_KEY_D) {
+//        position += right * deltaTime * speed;
+//    }
 }
 
 void Camera::onKeyUp(int key) {
@@ -51,21 +51,21 @@ void Camera::onKeyUp(int key) {
 }
 
 void Camera::onKeyHold(int key) {
-    if (key == GLFW_KEY_W) {
-        position += front * deltaTime * speed;
-    }
-
-    if (key == GLFW_KEY_A) {
-        position -= right * deltaTime * speed;
-    }
-
-    if (key == GLFW_KEY_S) {
-        position -= front * deltaTime * speed;
-    }
-
-    if (key == GLFW_KEY_D) {
-        position += right * deltaTime * speed;
-    }
+//    if (key == GLFW_KEY_W) {
+//        position += front * deltaTime * speed;
+//    }
+//
+//    if (key == GLFW_KEY_A) {
+//        position -= right * deltaTime * speed;
+//    }
+//
+//    if (key == GLFW_KEY_S) {
+//        position -= front * deltaTime * speed;
+//    }
+//
+//    if (key == GLFW_KEY_D) {
+//        position += right * deltaTime * speed;
+//    }
 }
 
 void Camera::onMouseMove(double xpos, double ypos) {
